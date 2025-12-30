@@ -1,4 +1,4 @@
-# musicland-app
+# Musicland App in Flutter
 
 Hi, this my new app built in Flutter.
 
@@ -21,5 +21,6 @@ The app will use Firebase for backend services: Authentication, Database, Offlin
 - Other: Filtering ads by instrument or genre, Saving ads to favorites (offline supported)
 
 
-Thank you,
+Thank you!
+
 Kristjan.
