@@ -52,9 +52,9 @@ dependencies:
   intl: ^0.20.1
   font_awesome_flutter: ^10.8.0
   firebase_messaging: ^15.1.6
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
-  flutter_launcher_icons: ^0.14.2
   flutter_test:
     sdk: flutter
 
@@ -69,9 +69,7 @@ dev_dependencies:
 
 flutter_launcher_icons:
   android: true
-  ios: true
   image_path: "assets/logo.png"
-  remove_alpha_ios: true
   adaptive_icon_background: "#ffffff"
   adaptive_icon_foreground: "assets/logo.png"
   min_sdk_android: 21
