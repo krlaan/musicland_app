@@ -13,8 +13,9 @@ String _$userIdHash() => r'3cde11bb51a011e681f7367fa85f77167a93545a';
 final userIdProvider = AutoDisposeProvider<UserId?>.internal(
   userId,
   name: r'userIdProvider',
-  debugGetCreateSourceHash:
-  const bool.fromEnvironment('dart.vm.product') ? null : _$userIdHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$userIdHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -24,4 +25,3 @@ final userIdProvider = AutoDisposeProvider<UserId?>.internal(
 typedef UserIdRef = AutoDisposeProviderRef<UserId?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
-

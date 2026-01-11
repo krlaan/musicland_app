@@ -10,6 +10,9 @@ class FirebaseFieldName {
   static const email = 'email';
   static const createdAt = 'created_at';
   static const fcmToken = 'fcm_token';
+  static const instruments = 'instruments';
+  static const genres = 'genres';
+  static const experience = 'experience';
 
   const FirebaseFieldName._();
 }

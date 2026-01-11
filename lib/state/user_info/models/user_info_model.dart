@@ -11,7 +11,10 @@ class UserInfoModel with _$UserInfoModel {
   const factory UserInfoModel({
     @JsonKey(name: FirebaseFieldName.userId) required UserId userId,
     @JsonKey(name: FirebaseFieldName.displayName) required String displayName,
-    String? email,
+    @JsonKey(name: FirebaseFieldName.email) String? email,
+    @JsonKey(name: FirebaseFieldName.instruments) @Default([]) List<String> instruments,
+    @JsonKey(name: FirebaseFieldName.genres) @Default([]) List<String> genres,
+    @JsonKey(name: FirebaseFieldName.experience) String? experience,
   }) = _UserInfoModel;
 
   factory UserInfoModel.fromJson(Map<String, dynamic> json) =>

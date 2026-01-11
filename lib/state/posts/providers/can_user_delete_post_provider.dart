@@ -13,14 +13,3 @@ Stream<bool> canUserDeletePost(
   final loggedInUserId = ref.watch(userIdProvider);
   return Stream.value(postUserId == loggedInUserId);
 }
-
-/*
-We don't have to always generate the provider file. We can also create the provider manually.
-@riverpod
-Stream<bool> canUserDeletePost(
-    Ref ref,
-    UserId postUserId,
-    ) async* {
-  final loggedInUserId = ref.watch(userIdProvider);
-  yield postUserId == loggedInUserId;
-}*/

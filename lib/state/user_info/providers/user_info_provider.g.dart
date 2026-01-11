@@ -39,21 +39,15 @@ class UserInfoModelFamily extends Family<AsyncValue<UserInfoModel>> {
   const UserInfoModelFamily();
 
   /// See also [userInfoModel].
-  UserInfoModelProvider call(
-      String id,
-      ) {
-    return UserInfoModelProvider(
-      id,
-    );
+  UserInfoModelProvider call(String id) {
+    return UserInfoModelProvider(id);
   }
 
   @override
   UserInfoModelProvider getProviderOverride(
-      covariant UserInfoModelProvider provider,
-      ) {
-    return call(
-      provider.id,
-    );
+    covariant UserInfoModelProvider provider,
+  ) {
+    return call(provider.id);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -74,45 +68,40 @@ class UserInfoModelFamily extends Family<AsyncValue<UserInfoModel>> {
 /// See also [userInfoModel].
 class UserInfoModelProvider extends AutoDisposeStreamProvider<UserInfoModel> {
   /// See also [userInfoModel].
-  UserInfoModelProvider(
-      String id,
-      ) : this._internal(
-        (ref) => userInfoModel(
-      ref as UserInfoModelRef,
-      id,
-    ),
-    from: userInfoModelProvider,
-    name: r'userInfoModelProvider',
-    debugGetCreateSourceHash:
-    const bool.fromEnvironment('dart.vm.product')
-        ? null
-        : _$userInfoModelHash,
-    dependencies: UserInfoModelFamily._dependencies,
-    allTransitiveDependencies:
-    UserInfoModelFamily._allTransitiveDependencies,
-    id: id,
-  );
+  UserInfoModelProvider(String id)
+    : this._internal(
+        (ref) => userInfoModel(ref as UserInfoModelRef, id),
+        from: userInfoModelProvider,
+        name: r'userInfoModelProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$userInfoModelHash,
+        dependencies: UserInfoModelFamily._dependencies,
+        allTransitiveDependencies:
+            UserInfoModelFamily._allTransitiveDependencies,
+        id: id,
+      );
 
   UserInfoModelProvider._internal(
-      super._createNotifier, {
-        required super.name,
-        required super.dependencies,
-        required super.allTransitiveDependencies,
-        required super.debugGetCreateSourceHash,
-        required super.from,
-        required this.id,
-      }) : super.internal();
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
 
   final String id;
 
   @override
   Override overrideWith(
-      Stream<UserInfoModel> Function(UserInfoModelRef provider) create,
-      ) {
+    Stream<UserInfoModel> Function(UserInfoModelRef provider) create,
+  ) {
     return ProviderOverride(
       origin: this,
       override: UserInfoModelProvider._internal(
-            (ref) => create(ref as UserInfoModelRef),
+        (ref) => create(ref as UserInfoModelRef),
         from: from,
         name: null,
         dependencies: null,
@@ -157,5 +146,6 @@ class _UserInfoModelProviderElement
   @override
   String get id => (origin as UserInfoModelProvider).id;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

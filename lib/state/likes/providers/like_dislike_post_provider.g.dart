@@ -33,9 +33,7 @@ abstract class _$LikeDislikePost
     extends BuildlessAutoDisposeAsyncNotifier<bool> {
   late final LikeDislikeRequest request;
 
-  FutureOr<bool> build({
-    required LikeDislikeRequest request,
-  });
+  FutureOr<bool> build({required LikeDislikeRequest request});
 }
 
 /// See also [LikeDislikePost].
@@ -48,21 +46,15 @@ class LikeDislikePostFamily extends Family<AsyncValue<bool>> {
   const LikeDislikePostFamily();
 
   /// See also [LikeDislikePost].
-  LikeDislikePostProvider call({
-    required LikeDislikeRequest request,
-  }) {
-    return LikeDislikePostProvider(
-      request: request,
-    );
+  LikeDislikePostProvider call({required LikeDislikeRequest request}) {
+    return LikeDislikePostProvider(request: request);
   }
 
   @override
   LikeDislikePostProvider getProviderOverride(
-      covariant LikeDislikePostProvider provider,
-      ) {
-    return call(
-      request: provider.request,
-    );
+    covariant LikeDislikePostProvider provider,
+  ) {
+    return call(request: provider.request);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -84,41 +76,35 @@ class LikeDislikePostFamily extends Family<AsyncValue<bool>> {
 class LikeDislikePostProvider
     extends AutoDisposeAsyncNotifierProviderImpl<LikeDislikePost, bool> {
   /// See also [LikeDislikePost].
-  LikeDislikePostProvider({
-    required LikeDislikeRequest request,
-  }) : this._internal(
+  LikeDislikePostProvider({required LikeDislikeRequest request})
+    : this._internal(
         () => LikeDislikePost()..request = request,
-    from: likeDislikePostProvider,
-    name: r'likeDislikePostProvider',
-    debugGetCreateSourceHash:
-    const bool.fromEnvironment('dart.vm.product')
-        ? null
-        : _$likeDislikePostHash,
-    dependencies: LikeDislikePostFamily._dependencies,
-    allTransitiveDependencies:
-    LikeDislikePostFamily._allTransitiveDependencies,
-    request: request,
-  );
+        from: likeDislikePostProvider,
+        name: r'likeDislikePostProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$likeDislikePostHash,
+        dependencies: LikeDislikePostFamily._dependencies,
+        allTransitiveDependencies:
+            LikeDislikePostFamily._allTransitiveDependencies,
+        request: request,
+      );
 
   LikeDislikePostProvider._internal(
-      super._createNotifier, {
-        required super.name,
-        required super.dependencies,
-        required super.allTransitiveDependencies,
-        required super.debugGetCreateSourceHash,
-        required super.from,
-        required this.request,
-      }) : super.internal();
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.request,
+  }) : super.internal();
 
   final LikeDislikeRequest request;
 
   @override
-  FutureOr<bool> runNotifierBuild(
-      covariant LikeDislikePost notifier,
-      ) {
-    return notifier.build(
-      request: request,
-    );
+  FutureOr<bool> runNotifierBuild(covariant LikeDislikePost notifier) {
+    return notifier.build(request: request);
   }
 
   @override
@@ -126,7 +112,7 @@ class LikeDislikePostProvider
     return ProviderOverride(
       origin: this,
       override: LikeDislikePostProvider._internal(
-            () => create()..request = request,
+        () => create()..request = request,
         from: from,
         name: null,
         dependencies: null,
@@ -172,5 +158,6 @@ class _LikeDislikePostProviderElement
   @override
   LikeDislikeRequest get request => (origin as LikeDislikePostProvider).request;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

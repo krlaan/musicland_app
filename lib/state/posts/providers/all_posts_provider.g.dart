@@ -13,8 +13,9 @@ String _$allPostsHash() => r'e57edf27ab90b9e13794b51c49799714d6b497fe';
 final allPostsProvider = AutoDisposeStreamProvider<Iterable<Post>>.internal(
   allPosts,
   name: r'allPostsProvider',
-  debugGetCreateSourceHash:
-  const bool.fromEnvironment('dart.vm.product') ? null : _$allPostsHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$allPostsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
