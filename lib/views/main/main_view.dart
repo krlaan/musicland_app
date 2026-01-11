@@ -27,9 +27,15 @@ class _MainViewState extends ConsumerState<MainView> {
 
   @override
   Widget build(BuildContext context) {
+    final titles = [
+      Strings.allAds,
+      Strings.search,
+      Strings.createAd,
+      Strings.profile,
+    ];
     return Scaffold(
       appBar: AppBar(
-        title: const Text(Strings.appName),
+        title: Text(titles[_currentIndex]),
         actions: [
           IconButton(
             onPressed: () async {

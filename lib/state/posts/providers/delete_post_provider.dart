@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:musicland_app/state/constants/firebase_collection_name.dart';
 import 'package:musicland_app/state/constants/firebase_field_name.dart';
-import 'package:musicland_app/state/constants/supabase_constants.dart';
 import 'package:musicland_app/state/posts/models/post.dart';
 import 'package:musicland_app/typedef/is_loading.dart';
 import 'package:musicland_app/typedef/post_id.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'delete_post_provider.g.dart';
 
@@ -19,8 +17,6 @@ class DeletePost extends _$DeletePost {
     state = true;
 
     try {
-      await _deletePostFiles(post: post);
-
       await _deleteAllDocuments(
         inCollection: FirebaseCollectionName.likes,
         postId: post.postId,
@@ -64,19 +60,5 @@ class DeletePost extends _$DeletePost {
         }
       },
     );
-  }
-
-  Future<void> _deletePostFiles({required Post post}) async {
-    final fileName = post.fileName;
-    final userId = post.userId;
-
-    final paths = [
-      '$userId/${SupabaseConstants.images}/$fileName.jpg',
-      '$userId/${SupabaseConstants.thumbnails}/$fileName.jpg',
-    ];
-
-    await Supabase.instance.client.storage
-        .from(SupabaseConstants.users)
-        .remove(paths);
   }
 }

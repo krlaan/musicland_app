@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:musicland_app/state/posts/models/post.dart';
@@ -26,8 +24,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/create-new-post',
       builder: (BuildContext context, GoRouterState state) {
-        final fileToPost = state.extra as File;
-        return CreateNewPostView(fileToPost: fileToPost);
+        return const CreateNewPostView();
       },
     ),
     GoRoute(

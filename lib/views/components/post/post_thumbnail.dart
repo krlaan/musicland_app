@@ -15,9 +15,21 @@ class PostThumbnailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTapped,
-      child: Image.network(
-        post.thumbnailUrl,
-        fit: BoxFit.cover,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Text(
+              post.message.length > 50
+                  ? '${post.message.substring(0, 50)}...'
+                  : post.message,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 12),
+            ),
+          ),
+        ),
       ),
     );
   }

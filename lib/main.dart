@@ -4,15 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:musicland_app/firebase_options.dart';
 import 'package:musicland_app/router/router.dart';
 import 'package:musicland_app/service/push_notification/push_notification_service.dart';
-import 'package:musicland_app/state/constants/supabase_constants.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Supabase.initialize(
-    url: SupabaseConstants.supabaseUrl,
-    anonKey: SupabaseConstants.anonKey,
-  );
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

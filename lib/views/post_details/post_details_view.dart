@@ -7,7 +7,6 @@ import 'package:musicland_app/state/posts/providers/delete_post_provider.dart';
 import 'package:musicland_app/views/components/likes/like_button.dart';
 import 'package:musicland_app/views/components/likes/likes_count_view.dart';
 import 'package:musicland_app/views/components/post/post_date_view.dart';
-import 'package:musicland_app/views/components/post/post_image_view.dart';
 import 'package:musicland_app/views/components/post/post_name_and_message_view.dart';
 import 'package:musicland_app/views/constants/strings.dart';
 import 'package:musicland_app/views/dialogs/alert_dialog_model.dart';
@@ -50,7 +49,6 @@ class PostDetailsView extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            PostImageView(post: post),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
