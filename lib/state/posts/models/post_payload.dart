@@ -11,11 +11,13 @@ class PostPayload extends MapView<String, dynamic> {
     required String title,
     required String instrument,
     required String message,
+    required String experience,
   }) : super({
          PostKey.userId: userId,
          PostKey.title: title,
          PostKey.instrument: instrument,
          PostKey.message: message,
+         PostKey.experience: experience,
          PostKey.createdAt: FieldValue.serverTimestamp(),
        });
 }

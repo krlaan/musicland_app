@@ -37,14 +37,14 @@ class ProfileView extends ConsumerWidget {
                         const Text(
                           'Name',
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
                             color: Colors.grey,
                           ),
                         ),
                         Text(
                           userInfo.displayName,
                           style: const TextStyle(
-                            fontSize: 20,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -62,7 +62,7 @@ class ProfileView extends ConsumerWidget {
                 'Instrument',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: 18,
                 ),
               ),
               const SizedBox(height: 4),
@@ -70,7 +70,7 @@ class ProfileView extends ConsumerWidget {
                 userInfo.instruments.isNotEmpty
                     ? userInfo.instruments.join(', ')
                     : '-',
-                style: const TextStyle(fontSize: 15),
+                style: const TextStyle(fontSize: 17),
               ),
               const SizedBox(height: 16),
               const Divider(height: 1),
@@ -79,13 +79,13 @@ class ProfileView extends ConsumerWidget {
                 'Genres',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: 18,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 userInfo.genres.isNotEmpty ? userInfo.genres.join(', ') : '-',
-                style: const TextStyle(fontSize: 15),
+                style: const TextStyle(fontSize: 17),
               ),
               const SizedBox(height: 16),
               const Divider(height: 1),
@@ -94,13 +94,15 @@ class ProfileView extends ConsumerWidget {
                 'Experience',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: 18,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
-                userInfo.experience ?? '-',
-                style: const TextStyle(fontSize: 15),
+                userInfo.experience != null && userInfo.experience!.isNotEmpty
+                    ? '${userInfo.experience} years'
+                    : '-',
+                style: const TextStyle(fontSize: 17),
               ),
               const SizedBox(height: 16),
               const Divider(height: 1),
@@ -114,7 +116,7 @@ class ProfileView extends ConsumerWidget {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
-                child: const Text('EDIT'),
+                child: const Text('EDIT', style: TextStyle(fontSize: 16)),
               ),
             ],
           ),

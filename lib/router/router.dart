@@ -4,7 +4,6 @@ import 'package:musicland_app/state/posts/models/post.dart';
 import 'package:musicland_app/views/auth_view.dart';
 import 'package:musicland_app/views/profile_setup/profile_setup_view.dart';
 import 'package:musicland_app/views/authentication/register/register_view.dart';
-import 'package:musicland_app/views/create_new_post/create_new_post_view.dart';
 import 'package:musicland_app/views/post_details/post_details_view.dart';
 
 /// The route configuration.
@@ -26,12 +25,6 @@ final GoRouter router = GoRouter(
       path: '/profile-setup',
       builder: (BuildContext context, GoRouterState state) {
         return const ProfileSetupView();
-      },
-    ),
-    GoRoute(
-      path: '/create-new-post',
-      builder: (BuildContext context, GoRouterState state) {
-        return const CreateNewPostView();
       },
     ),
     GoRoute(

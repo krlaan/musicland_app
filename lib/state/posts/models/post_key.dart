@@ -6,6 +6,7 @@ class PostKey {
   static const title = 'title';
   static const instrument = 'instrument';
   static const message = 'message';
+  static const experience = 'experience';
   static const createdAt = 'created_at';
 
   const PostKey._();

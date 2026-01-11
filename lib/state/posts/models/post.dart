@@ -8,6 +8,7 @@ class Post {
   final String title;
   final String instrument;
   final String message;
+  final String experience;
   final DateTime createdAt;
 
   Post({
@@ -17,5 +18,6 @@ class Post {
         title = json[PostKey.title] ?? '',
         instrument = json[PostKey.instrument] ?? '',
         message = json[PostKey.message],
+        experience = json[PostKey.experience] ?? '',
         createdAt = (json[PostKey.createdAt] as Timestamp).toDate();
 }
