@@ -1,4 +1,3 @@
-import 'package:musicland_app/service/push_notification/push_notification_service.dart';
 import 'package:musicland_app/state/auth/models/auth_result.dart';
 import 'package:musicland_app/state/auth/models/auth_state.dart';
 import 'package:musicland_app/state/user_info/backend/user_info_storage.dart';
@@ -35,12 +34,6 @@ class Authentication extends _$Authentication {
 
     final userId = _authenticator.userId;
 
-    String? token = await PushNotificationService().getFcmToken();
-    if (userId != null && token != null) {
-      // If user logs in from the different account, we need to update the fcm token
-      saveUserInfo(userId: userId, fcmToken: token);
-    }
-
     state = AuthState(
       result: result,
       isLoading: false,
@@ -64,11 +57,8 @@ class Authentication extends _$Authentication {
 
     final userId = _authenticator.userId;
 
-    String? token = await PushNotificationService().getFcmToken();
-
     if (result == AuthResult.success && userId != null) {
-      // If user creates a new account, we need to save the device FCM token
-      saveUserInfo(userId: userId, email: email, name: name, fcmToken: token);
+      saveUserInfo(userId: userId, email: email, name: name);
     }
 
     state = AuthState(
@@ -79,12 +69,39 @@ class Authentication extends _$Authentication {
   }
 
   Future<void> saveUserInfo(
-      {required String userId, String? email, String? name, String? fcmToken}) {
+      {required String userId, String? email, String? name}) {
     return _userInfoStorage.saveOrUpdateUserInfo(
       userId: userId,
       displayName: name,
       email: email,
-      fcmToken: fcmToken,
+    );
+  }
+
+  Future<void> signInWithGoogle() async {
+    state = state.copyWith(isLoading: true);
+
+    final result = await _authenticator.signInWithGoogle();
+
+    final userId = _authenticator.userId;
+
+    // Save user info if sign-in was successful
+    if (result == AuthResult.success && userId != null) {
+      // Get name and email from Firebase Auth (Google provides them automatically)
+      final displayName = _authenticator.currentUserDisplayName;
+      final email = _authenticator.currentUserEmail;
+      
+      // Always create/update user info for Google sign-in
+      await saveUserInfo(
+        userId: userId,
+        email: email,
+        name: displayName ?? email?.split('@').first ?? 'User',
+      );
+    }
+
+    state = AuthState(
+      result: result,
+      isLoading: false,
+      userId: userId,
     );
   }
 }
