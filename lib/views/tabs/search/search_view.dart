@@ -32,7 +32,7 @@ class _SearchViewState extends ConsumerState<SearchView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -51,7 +51,9 @@ class _SearchViewState extends ConsumerState<SearchView> {
             ),
           ),
         ),
-        SearchGridView(searchTerm: _searchTerm),
+        Expanded(
+          child: SearchGridView(searchTerm: _searchTerm),
+        ),
       ],
     );
   }
