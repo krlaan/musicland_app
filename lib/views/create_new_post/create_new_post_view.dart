@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:musicland_app/state/posts/providers/all_posts_provider.dart';
+import 'package:musicland_app/state/posts/providers/create_post_provider.dart';
 import 'package:musicland_app/views/constants/strings.dart';
 
 class CreateNewPostView extends ConsumerStatefulWidget {
@@ -15,7 +17,16 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
   late final TextEditingController descriptionController;
   String? selectedInstrument;
   
-  final instruments = ['Guitar', 'Bass', 'Drums', 'Piano', 'Vocals', 'Violin', 'Flute', 'Trumpet'];
+  final instruments = [
+    'Guitar',
+    'Bass',
+    'Drums',
+    'Keyboard',
+    'Vocals',
+    'Violin',
+    'Saxophone',
+    'Trumpet',
+  ];
 
   bool get isPostButtonEnabled =>
       titleController.text.isNotEmpty &&
@@ -126,9 +137,17 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
             // Post button
             ElevatedButton(
               onPressed: isPostButtonEnabled
-                  ? () {
+                  ? () async {
                       FocusManager.instance.primaryFocus?.unfocus();
-                      if (context.mounted) {
+                      
+                      final success = await ref.read(createPostProvider.notifier).createPost(
+                        title: titleController.text,
+                        instrument: selectedInstrument!,
+                        message: descriptionController.text,
+                      );
+                      
+                      if (success && context.mounted) {
+                        ref.invalidate(allPostsProvider);
                         context.pop();
                       }
                     }
@@ -139,7 +158,7 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
                 disabledBackgroundColor: Colors.grey[300],
               ),
               child: const Text(
-                'POST',
+                'CREATE',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,

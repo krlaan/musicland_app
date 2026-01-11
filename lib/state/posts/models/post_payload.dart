@@ -8,9 +8,13 @@ import 'package:musicland_app/typedef/user_id.dart';
 class PostPayload extends MapView<String, dynamic> {
   PostPayload({
     required UserId userId,
+    required String title,
+    required String instrument,
     required String message,
   }) : super({
          PostKey.userId: userId,
+         PostKey.title: title,
+         PostKey.instrument: instrument,
          PostKey.message: message,
          PostKey.createdAt: FieldValue.serverTimestamp(),
        });
