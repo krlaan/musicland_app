@@ -52,17 +52,16 @@ class PostDetailsView extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                if (post.allowsLikes) LikeButton(postId: post.postId),
+                LikeButton(postId: post.postId),
               ],
             ),
             PostDisplayNameAndMessageView(post: post),
             PostDateView(dateTime: post.createdAt),
             const Divider(color: Colors.black),
-            if (post.allowsLikes)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: LikesCountView(postId: post.postId),
-              ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: LikesCountView(postId: post.postId),
+            ),
           ],
         ),
       ),
