@@ -33,9 +33,16 @@ Stream<Iterable<Post>> postsBySearchTerm(
         ),
       )
           .where(
-            (post) => post.message.toLowerCase().contains(
-          searchTerm.toLowerCase(),
-        ),
+            (post) => 
+          post.message.toLowerCase().contains(
+            searchTerm.toLowerCase(),
+          ) ||
+          post.instrument.toLowerCase().contains(
+            searchTerm.toLowerCase(),
+          ) ||
+          post.title.toLowerCase().contains(
+            searchTerm.toLowerCase(),
+          )
       );
       controller.add(posts);
     },
