@@ -14,6 +14,9 @@ class Strings {
   static const search = 'Search';
   static const addPost = 'Add Post';
   static const profile = 'Profile';
+  // App bar titles per tab
+  static const allAds = 'All Ads';
+  static const createAd = 'Create Ad';
 
   // Add post view
   static const addPostView = 'Add Post';
