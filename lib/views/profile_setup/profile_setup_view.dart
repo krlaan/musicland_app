@@ -181,8 +181,9 @@ class _ProfileSetupViewState extends ConsumerState<ProfileSetupView> {
             const SizedBox(height: 12),
             TextField(
               controller: experienceController,
+              keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                hintText: 'e.g. 1 year, 5 years',
+                hintText: 'Enter years (e.g. 1, 5, 10)',
                 border: OutlineInputBorder(),
               ),
             ),

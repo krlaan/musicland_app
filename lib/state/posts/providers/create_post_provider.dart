@@ -16,6 +16,7 @@ class CreatePost extends _$CreatePost {
     required String title,
     required String instrument,
     required String message,
+    required String experience,
   }) async {
     state = true;
     try {
@@ -29,6 +30,7 @@ class CreatePost extends _$CreatePost {
         title: title,
         instrument: instrument,
         message: message,
+        experience: experience,
       );
 
       await FirebaseFirestore.instance

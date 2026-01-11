@@ -13,25 +13,22 @@ class PostsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      padding: const EdgeInsets.all(8.0),
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,
-      ),
+    return ListView.builder(
+      padding: const EdgeInsets.all(12.0),
       itemCount: posts.length,
       itemBuilder: (context, index) {
         final post = posts.elementAt(index);
-        return PostThumbnailView(
-          post: post,
-          onTapped: () {
-            context.push(
-              '/post-details',
-              extra: post,
-            );
-          },
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 12.0),
+          child: PostThumbnailView(
+            post: post,
+            onTapped: () {
+              context.push(
+                '/post-details',
+                extra: post,
+              );
+            },
+          ),
         );
       },
     );
