@@ -70,5 +70,38 @@ class UserInfoStorage {
       return false;
     }
   }
-}
 
+  Future<String?> getUserDisplayName(UserId userId) async {
+    try {
+      final userInfo = await FirebaseFirestore.instance
+          .collection(FirebaseCollectionName.users)
+          .where(FirebaseFieldName.userId, isEqualTo: userId)
+          .limit(1)
+          .get();
+
+      if (userInfo.docs.isNotEmpty) {
+        return userInfo.docs.first.data()[FirebaseFieldName.displayName] as String?;
+      }
+      return null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<String?> getUserEmail(UserId userId) async {
+    try {
+      final userInfo = await FirebaseFirestore.instance
+          .collection(FirebaseCollectionName.users)
+          .where(FirebaseFieldName.userId, isEqualTo: userId)
+          .limit(1)
+          .get();
+
+      if (userInfo.docs.isNotEmpty) {
+        return userInfo.docs.first.data()[FirebaseFieldName.email] as String?;
+      }
+      return null;
+    } catch (_) {
+      return null;
+    }
+  }
+}

@@ -127,6 +127,32 @@ class LoginViewState extends ConsumerState<LoginView> {
                   ),
                 ),
                 const DividerWithMargins(20),
+                Text(
+                  'Or continue with',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const SizedBox(height: 16),
+                OutlinedButton.icon(
+                  icon: Image.asset(
+                    'assets/google_logo.png',
+                    height: 24,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.g_mobiledata, size: 24);
+                    },
+                  ),
+                  label: const Text('Sign in with Google'),
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    side: const BorderSide(color: Colors.grey),
+                  ),
+                  onPressed: authProvider.isLoading
+                      ? null
+                      : () async {
+                    final authNotifier = ref.read(authenticationProvider.notifier);
+                    await authNotifier.signInWithGoogle();
+                  },
+                ),
                 //const LoginViewSignupLinks(),
               ],
             ),
