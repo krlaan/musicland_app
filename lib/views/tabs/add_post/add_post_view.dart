@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:musicland_app/state/posts/providers/all_posts_provider.dart';
 import 'package:musicland_app/state/posts/providers/create_post_provider.dart';
-import 'package:musicland_app/views/constants/strings.dart';
 
 class AddPostView extends ConsumerStatefulWidget {
   const AddPostView({super.key});

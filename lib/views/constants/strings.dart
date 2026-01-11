@@ -52,7 +52,7 @@ class Strings {
 
     // Post interaction strings
   static const checkOutThisPost = 'Check out this post!';
-  static const postDetails = 'Post Details';
+  static const adDetails = 'Ad Details';
   static const post = 'post';
   static const createNewPost = 'Create New Post';
   static const pleaseWriteYourMessageHere = 'Please write your message here';
