@@ -42,23 +42,23 @@ class LoginViewState extends ConsumerState<LoginView> {
   Widget build(BuildContext context) {
     final authProvider = ref.watch(authenticationProvider);
 
-    ref.listen(authenticationProvider,
-            (AuthState? previous, AuthState current) {
-          // We check if the state is not loading and login failed
-          if (current.result == AuthResult.failure && !current.isLoading) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Wrong email or password!"),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
-        });
+    ref.listen(authenticationProvider, (
+      AuthState? previous,
+      AuthState current,
+    ) {
+      // We check if the state is not loading and login failed
+      if (current.result == AuthResult.failure && !current.isLoading) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Wrong email or password!"),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    });
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(Strings.appName),
-      ),
+      appBar: AppBar(title: const Text(Strings.appName)),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -76,10 +76,9 @@ class LoginViewState extends ConsumerState<LoginView> {
                 const DividerWithMargins(20),
                 Text(
                   Strings.logIntoYourAccount,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(height: 1.5),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(height: 1.5),
                 ),
                 const SizedBox(height: 20),
                 // Email field
@@ -91,7 +90,7 @@ class LoginViewState extends ConsumerState<LoginView> {
                   ),
                   keyboardType: TextInputType.emailAddress,
                   validator:
-                  validateEmail, //-> (String? value) => _validateEmail(value)
+                      validateEmail, //-> (String? value) => _validateEmail(value)
                 ),
                 const SizedBox(height: 16),
                 // Password field
@@ -105,27 +104,35 @@ class LoginViewState extends ConsumerState<LoginView> {
                   validator: validatePassword,
                 ),
                 const SizedBox(height: 16),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: AppColors.primaryColor,
-                    foregroundColor: AppColors.loginButtonTextColor,
+
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightGreen,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
                   onPressed: authProvider.isLoading ? null : _attemptLogin,
-                  child: const Text("Login"),
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(fontSize: 14),
+                  ),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: AppColors.secondaryColor,
-                    foregroundColor: AppColors.loginButtonTextColor,
+                const SizedBox(height: 4),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
                   onPressed: () {
                     context.push("/register");
                   },
                   child: const Text(
                     "Register",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
+
                 const DividerWithMargins(20),
                 Text(
                   'Or continue with',
@@ -149,9 +156,11 @@ class LoginViewState extends ConsumerState<LoginView> {
                   onPressed: authProvider.isLoading
                       ? null
                       : () async {
-                    final authNotifier = ref.read(authenticationProvider.notifier);
-                    await authNotifier.signInWithGoogle();
-                  },
+                          final authNotifier = ref.read(
+                            authenticationProvider.notifier,
+                          );
+                          await authNotifier.signInWithGoogle();
+                        },
                 ),
                 //const LoginViewSignupLinks(),
               ],

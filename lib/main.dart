@@ -28,6 +28,12 @@ class _MyAppState extends ConsumerState<MyApp> {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: const Color(0xFFFFFBF0),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFFFFF8E1),
+          foregroundColor: Colors.black87,
+          elevation: 0,
+        ),
         useMaterial3: true,
       ),
     );

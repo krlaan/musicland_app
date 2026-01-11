@@ -139,13 +139,12 @@ class RegisterViewState extends ConsumerState<RegisterView> {
                 const SizedBox(height: 16),
                 TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: AppColors.secondaryColor,
-                    foregroundColor: AppColors.loginButtonTextColor,
+                    backgroundColor: Colors.lightGreen,
+                    foregroundColor: Colors.black,
                   ),
                   onPressed: _attemptRegister,
                   child: const Text(
                     "Register",
-                    style: TextStyle(color: Colors.white),
                   ),
                 ),
                 const DividerWithMargins(20),
