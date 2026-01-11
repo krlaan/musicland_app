@@ -39,21 +39,15 @@ class PostsBySearchTermFamily extends Family<AsyncValue<Iterable<Post>>> {
   const PostsBySearchTermFamily();
 
   /// See also [postsBySearchTerm].
-  PostsBySearchTermProvider call(
-      String searchTerm,
-      ) {
-    return PostsBySearchTermProvider(
-      searchTerm,
-    );
+  PostsBySearchTermProvider call(String searchTerm) {
+    return PostsBySearchTermProvider(searchTerm);
   }
 
   @override
   PostsBySearchTermProvider getProviderOverride(
-      covariant PostsBySearchTermProvider provider,
-      ) {
-    return call(
-      provider.searchTerm,
-    );
+    covariant PostsBySearchTermProvider provider,
+  ) {
+    return call(provider.searchTerm);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -75,45 +69,40 @@ class PostsBySearchTermFamily extends Family<AsyncValue<Iterable<Post>>> {
 class PostsBySearchTermProvider
     extends AutoDisposeStreamProvider<Iterable<Post>> {
   /// See also [postsBySearchTerm].
-  PostsBySearchTermProvider(
-      String searchTerm,
-      ) : this._internal(
-        (ref) => postsBySearchTerm(
-      ref as PostsBySearchTermRef,
-      searchTerm,
-    ),
-    from: postsBySearchTermProvider,
-    name: r'postsBySearchTermProvider',
-    debugGetCreateSourceHash:
-    const bool.fromEnvironment('dart.vm.product')
-        ? null
-        : _$postsBySearchTermHash,
-    dependencies: PostsBySearchTermFamily._dependencies,
-    allTransitiveDependencies:
-    PostsBySearchTermFamily._allTransitiveDependencies,
-    searchTerm: searchTerm,
-  );
+  PostsBySearchTermProvider(String searchTerm)
+    : this._internal(
+        (ref) => postsBySearchTerm(ref as PostsBySearchTermRef, searchTerm),
+        from: postsBySearchTermProvider,
+        name: r'postsBySearchTermProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$postsBySearchTermHash,
+        dependencies: PostsBySearchTermFamily._dependencies,
+        allTransitiveDependencies:
+            PostsBySearchTermFamily._allTransitiveDependencies,
+        searchTerm: searchTerm,
+      );
 
   PostsBySearchTermProvider._internal(
-      super._createNotifier, {
-        required super.name,
-        required super.dependencies,
-        required super.allTransitiveDependencies,
-        required super.debugGetCreateSourceHash,
-        required super.from,
-        required this.searchTerm,
-      }) : super.internal();
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.searchTerm,
+  }) : super.internal();
 
   final String searchTerm;
 
   @override
   Override overrideWith(
-      Stream<Iterable<Post>> Function(PostsBySearchTermRef provider) create,
-      ) {
+    Stream<Iterable<Post>> Function(PostsBySearchTermRef provider) create,
+  ) {
     return ProviderOverride(
       origin: this,
       override: PostsBySearchTermProvider._internal(
-            (ref) => create(ref as PostsBySearchTermRef),
+        (ref) => create(ref as PostsBySearchTermRef),
         from: from,
         name: null,
         dependencies: null,
@@ -158,5 +147,6 @@ class _PostsBySearchTermProviderElement
   @override
   String get searchTerm => (origin as PostsBySearchTermProvider).searchTerm;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -12,7 +12,8 @@ part of 'like.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 Like _$LikeFromJson(Map<String, dynamic> json) {
   return _Like.fromJson(json);
@@ -39,12 +40,13 @@ mixin _$Like {
 /// @nodoc
 abstract class $LikeCopyWith<$Res> {
   factory $LikeCopyWith(Like value, $Res Function(Like) then) =
-  _$LikeCopyWithImpl<$Res, Like>;
+      _$LikeCopyWithImpl<$Res, Like>;
   @useResult
-  $Res call(
-      {@JsonKey(name: FirebaseFieldName.postId) String postId,
-        @JsonKey(name: FirebaseFieldName.userId) String likedBy,
-        @JsonKey(name: FirebaseFieldName.date) DateTime date});
+  $Res call({
+    @JsonKey(name: FirebaseFieldName.postId) String postId,
+    @JsonKey(name: FirebaseFieldName.userId) String likedBy,
+    @JsonKey(name: FirebaseFieldName.date) DateTime date,
+  });
 }
 
 /// @nodoc
@@ -66,34 +68,39 @@ class _$LikeCopyWithImpl<$Res, $Val extends Like>
     Object? likedBy = null,
     Object? date = null,
   }) {
-    return _then(_value.copyWith(
-      postId: null == postId
-          ? _value.postId
-          : postId // ignore: cast_nullable_to_non_nullable
-      as String,
-      likedBy: null == likedBy
-          ? _value.likedBy
-          : likedBy // ignore: cast_nullable_to_non_nullable
-      as String,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-      as DateTime,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            postId: null == postId
+                ? _value.postId
+                : postId // ignore: cast_nullable_to_non_nullable
+                      as String,
+            likedBy: null == likedBy
+                ? _value.likedBy
+                : likedBy // ignore: cast_nullable_to_non_nullable
+                      as String,
+            date: null == date
+                ? _value.date
+                : date // ignore: cast_nullable_to_non_nullable
+                      as DateTime,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$LikeImplCopyWith<$Res> implements $LikeCopyWith<$Res> {
   factory _$$LikeImplCopyWith(
-      _$LikeImpl value, $Res Function(_$LikeImpl) then) =
-  __$$LikeImplCopyWithImpl<$Res>;
+    _$LikeImpl value,
+    $Res Function(_$LikeImpl) then,
+  ) = __$$LikeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: FirebaseFieldName.postId) String postId,
-        @JsonKey(name: FirebaseFieldName.userId) String likedBy,
-        @JsonKey(name: FirebaseFieldName.date) DateTime date});
+  $Res call({
+    @JsonKey(name: FirebaseFieldName.postId) String postId,
+    @JsonKey(name: FirebaseFieldName.userId) String likedBy,
+    @JsonKey(name: FirebaseFieldName.date) DateTime date,
+  });
 }
 
 /// @nodoc
@@ -101,7 +108,7 @@ class __$$LikeImplCopyWithImpl<$Res>
     extends _$LikeCopyWithImpl<$Res, _$LikeImpl>
     implements _$$LikeImplCopyWith<$Res> {
   __$$LikeImplCopyWithImpl(_$LikeImpl _value, $Res Function(_$LikeImpl) _then)
-      : super(_value, _then);
+    : super(_value, _then);
 
   /// Create a copy of Like
   /// with the given fields replaced by the non-null parameter values.
@@ -112,30 +119,33 @@ class __$$LikeImplCopyWithImpl<$Res>
     Object? likedBy = null,
     Object? date = null,
   }) {
-    return _then(_$LikeImpl(
-      postId: null == postId
-          ? _value.postId
-          : postId // ignore: cast_nullable_to_non_nullable
-      as String,
-      likedBy: null == likedBy
-          ? _value.likedBy
-          : likedBy // ignore: cast_nullable_to_non_nullable
-      as String,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-      as DateTime,
-    ));
+    return _then(
+      _$LikeImpl(
+        postId: null == postId
+            ? _value.postId
+            : postId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        likedBy: null == likedBy
+            ? _value.likedBy
+            : likedBy // ignore: cast_nullable_to_non_nullable
+                  as String,
+        date: null == date
+            ? _value.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as DateTime,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LikeImpl implements _Like {
-  const _$LikeImpl(
-      {@JsonKey(name: FirebaseFieldName.postId) required this.postId,
-        @JsonKey(name: FirebaseFieldName.userId) required this.likedBy,
-        @JsonKey(name: FirebaseFieldName.date) required this.date});
+  const _$LikeImpl({
+    @JsonKey(name: FirebaseFieldName.postId) required this.postId,
+    @JsonKey(name: FirebaseFieldName.userId) required this.likedBy,
+    @JsonKey(name: FirebaseFieldName.date) required this.date,
+  });
 
   factory _$LikeImpl.fromJson(Map<String, dynamic> json) =>
       _$$LikeImplFromJson(json);
@@ -179,18 +189,16 @@ class _$LikeImpl implements _Like {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LikeImplToJson(
-      this,
-    );
+    return _$$LikeImplToJson(this);
   }
 }
 
 abstract class _Like implements Like {
-  const factory _Like(
-      {@JsonKey(name: FirebaseFieldName.postId) required final String postId,
-        @JsonKey(name: FirebaseFieldName.userId) required final String likedBy,
-        @JsonKey(name: FirebaseFieldName.date)
-        required final DateTime date}) = _$LikeImpl;
+  const factory _Like({
+    @JsonKey(name: FirebaseFieldName.postId) required final String postId,
+    @JsonKey(name: FirebaseFieldName.userId) required final String likedBy,
+    @JsonKey(name: FirebaseFieldName.date) required final DateTime date,
+  }) = _$LikeImpl;
 
   factory _Like.fromJson(Map<String, dynamic> json) = _$LikeImpl.fromJson;
 

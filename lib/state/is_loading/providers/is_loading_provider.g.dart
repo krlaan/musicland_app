@@ -6,15 +6,16 @@ part of 'is_loading_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$isLoadingHash() => r'4bbecda8970ec2c8b0c88a2ead35b3e5b4647c65';
+String _$isLoadingHash() => r'8fec2bdf8fd55c80be72c11dd358bd5e3f610cb7';
 
 /// See also [isLoading].
 @ProviderFor(isLoading)
 final isLoadingProvider = AutoDisposeProvider<bool>.internal(
   isLoading,
   name: r'isLoadingProvider',
-  debugGetCreateSourceHash:
-  const bool.fromEnvironment('dart.vm.product') ? null : _$isLoadingHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$isLoadingHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -24,4 +25,3 @@ final isLoadingProvider = AutoDisposeProvider<bool>.internal(
 typedef IsLoadingRef = AutoDisposeProviderRef<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
-

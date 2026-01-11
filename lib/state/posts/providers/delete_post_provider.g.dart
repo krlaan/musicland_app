@@ -6,19 +6,20 @@ part of 'delete_post_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$deletePostHash() => r'f29a57830cfdc8f87a819ef964476de741819b49';
+String _$deletePostHash() => r'c4290d629ddec06e6226ee27c4d830ae69ad7986';
 
 /// See also [DeletePost].
 @ProviderFor(DeletePost)
 final deletePostProvider =
-AutoDisposeNotifierProvider<DeletePost, IsLoading>.internal(
-  DeletePost.new,
-  name: r'deletePostProvider',
-  debugGetCreateSourceHash:
-  const bool.fromEnvironment('dart.vm.product') ? null : _$deletePostHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+    AutoDisposeNotifierProvider<DeletePost, IsLoading>.internal(
+      DeletePost.new,
+      name: r'deletePostProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$deletePostHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$DeletePost = AutoDisposeNotifier<IsLoading>;
 // ignore_for_file: type=lint

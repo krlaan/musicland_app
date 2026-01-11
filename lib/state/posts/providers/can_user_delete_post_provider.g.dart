@@ -39,21 +39,15 @@ class CanUserDeletePostFamily extends Family<AsyncValue<bool>> {
   const CanUserDeletePostFamily();
 
   /// See also [canUserDeletePost].
-  CanUserDeletePostProvider call(
-      String postUserId,
-      ) {
-    return CanUserDeletePostProvider(
-      postUserId,
-    );
+  CanUserDeletePostProvider call(String postUserId) {
+    return CanUserDeletePostProvider(postUserId);
   }
 
   @override
   CanUserDeletePostProvider getProviderOverride(
-      covariant CanUserDeletePostProvider provider,
-      ) {
-    return call(
-      provider.postUserId,
-    );
+    covariant CanUserDeletePostProvider provider,
+  ) {
+    return call(provider.postUserId);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -74,45 +68,40 @@ class CanUserDeletePostFamily extends Family<AsyncValue<bool>> {
 /// See also [canUserDeletePost].
 class CanUserDeletePostProvider extends AutoDisposeStreamProvider<bool> {
   /// See also [canUserDeletePost].
-  CanUserDeletePostProvider(
-      String postUserId,
-      ) : this._internal(
-        (ref) => canUserDeletePost(
-      ref as CanUserDeletePostRef,
-      postUserId,
-    ),
-    from: canUserDeletePostProvider,
-    name: r'canUserDeletePostProvider',
-    debugGetCreateSourceHash:
-    const bool.fromEnvironment('dart.vm.product')
-        ? null
-        : _$canUserDeletePostHash,
-    dependencies: CanUserDeletePostFamily._dependencies,
-    allTransitiveDependencies:
-    CanUserDeletePostFamily._allTransitiveDependencies,
-    postUserId: postUserId,
-  );
+  CanUserDeletePostProvider(String postUserId)
+    : this._internal(
+        (ref) => canUserDeletePost(ref as CanUserDeletePostRef, postUserId),
+        from: canUserDeletePostProvider,
+        name: r'canUserDeletePostProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$canUserDeletePostHash,
+        dependencies: CanUserDeletePostFamily._dependencies,
+        allTransitiveDependencies:
+            CanUserDeletePostFamily._allTransitiveDependencies,
+        postUserId: postUserId,
+      );
 
   CanUserDeletePostProvider._internal(
-      super._createNotifier, {
-        required super.name,
-        required super.dependencies,
-        required super.allTransitiveDependencies,
-        required super.debugGetCreateSourceHash,
-        required super.from,
-        required this.postUserId,
-      }) : super.internal();
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.postUserId,
+  }) : super.internal();
 
   final String postUserId;
 
   @override
   Override overrideWith(
-      Stream<bool> Function(CanUserDeletePostRef provider) create,
-      ) {
+    Stream<bool> Function(CanUserDeletePostRef provider) create,
+  ) {
     return ProviderOverride(
       origin: this,
       override: CanUserDeletePostProvider._internal(
-            (ref) => create(ref as CanUserDeletePostRef),
+        (ref) => create(ref as CanUserDeletePostRef),
         from: from,
         name: null,
         dependencies: null,
@@ -150,11 +139,13 @@ mixin CanUserDeletePostRef on AutoDisposeStreamProviderRef<bool> {
 }
 
 class _CanUserDeletePostProviderElement
-    extends AutoDisposeStreamProviderElement<bool> with CanUserDeletePostRef {
+    extends AutoDisposeStreamProviderElement<bool>
+    with CanUserDeletePostRef {
   _CanUserDeletePostProviderElement(super.provider);
 
   @override
   String get postUserId => (origin as CanUserDeletePostProvider).postUserId;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

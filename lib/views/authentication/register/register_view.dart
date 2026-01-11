@@ -64,8 +64,12 @@ class RegisterViewState extends ConsumerState<RegisterView> {
 
   @override
   Widget build(BuildContext context) {
-    // If the user has registered successfully, we pop the current view
-    ref.listen(isLoggedInProvider, (_, isLoggedIn) => context.pop());
+    // After successful registration/login, go to profile setup
+    ref.listen(isLoggedInProvider, (_, isLoggedIn) {
+      if (isLoggedIn && mounted) {
+        context.go('/profile-setup');
+      }
+    });
 
     ref.listen(authenticationProvider,
             (AuthState? previous, AuthState current) {

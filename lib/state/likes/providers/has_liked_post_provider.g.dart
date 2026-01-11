@@ -39,21 +39,15 @@ class HasLikedPostFamily extends Family<AsyncValue<bool>> {
   const HasLikedPostFamily();
 
   /// See also [hasLikedPost].
-  HasLikedPostProvider call(
-      String postId,
-      ) {
-    return HasLikedPostProvider(
-      postId,
-    );
+  HasLikedPostProvider call(String postId) {
+    return HasLikedPostProvider(postId);
   }
 
   @override
   HasLikedPostProvider getProviderOverride(
-      covariant HasLikedPostProvider provider,
-      ) {
-    return call(
-      provider.postId,
-    );
+    covariant HasLikedPostProvider provider,
+  ) {
+    return call(provider.postId);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -74,45 +68,40 @@ class HasLikedPostFamily extends Family<AsyncValue<bool>> {
 /// See also [hasLikedPost].
 class HasLikedPostProvider extends AutoDisposeStreamProvider<bool> {
   /// See also [hasLikedPost].
-  HasLikedPostProvider(
-      String postId,
-      ) : this._internal(
-        (ref) => hasLikedPost(
-      ref as HasLikedPostRef,
-      postId,
-    ),
-    from: hasLikedPostProvider,
-    name: r'hasLikedPostProvider',
-    debugGetCreateSourceHash:
-    const bool.fromEnvironment('dart.vm.product')
-        ? null
-        : _$hasLikedPostHash,
-    dependencies: HasLikedPostFamily._dependencies,
-    allTransitiveDependencies:
-    HasLikedPostFamily._allTransitiveDependencies,
-    postId: postId,
-  );
+  HasLikedPostProvider(String postId)
+    : this._internal(
+        (ref) => hasLikedPost(ref as HasLikedPostRef, postId),
+        from: hasLikedPostProvider,
+        name: r'hasLikedPostProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$hasLikedPostHash,
+        dependencies: HasLikedPostFamily._dependencies,
+        allTransitiveDependencies:
+            HasLikedPostFamily._allTransitiveDependencies,
+        postId: postId,
+      );
 
   HasLikedPostProvider._internal(
-      super._createNotifier, {
-        required super.name,
-        required super.dependencies,
-        required super.allTransitiveDependencies,
-        required super.debugGetCreateSourceHash,
-        required super.from,
-        required this.postId,
-      }) : super.internal();
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.postId,
+  }) : super.internal();
 
   final String postId;
 
   @override
   Override overrideWith(
-      Stream<bool> Function(HasLikedPostRef provider) create,
-      ) {
+    Stream<bool> Function(HasLikedPostRef provider) create,
+  ) {
     return ProviderOverride(
       origin: this,
       override: HasLikedPostProvider._internal(
-            (ref) => create(ref as HasLikedPostRef),
+        (ref) => create(ref as HasLikedPostRef),
         from: from,
         name: null,
         dependencies: null,
@@ -150,11 +139,13 @@ mixin HasLikedPostRef on AutoDisposeStreamProviderRef<bool> {
 }
 
 class _HasLikedPostProviderElement
-    extends AutoDisposeStreamProviderElement<bool> with HasLikedPostRef {
+    extends AutoDisposeStreamProviderElement<bool>
+    with HasLikedPostRef {
   _HasLikedPostProviderElement(super.provider);
 
   @override
   String get postId => (origin as HasLikedPostProvider).postId;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

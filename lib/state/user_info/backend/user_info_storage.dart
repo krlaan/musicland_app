@@ -12,6 +12,9 @@ class UserInfoStorage {
     String? displayName,
     String? email,
     String? fcmToken,
+    List<String>? instruments,
+    List<String>? genres,
+    String? experience,
   }) async {
     try {
       var userInfo = await FirebaseFirestore.instance
@@ -32,6 +35,15 @@ class UserInfoStorage {
         if (fcmToken != null) {
           updatedData[FirebaseFieldName.fcmToken] = fcmToken;
         }
+        if (instruments != null) {
+          updatedData[FirebaseFieldName.instruments] = instruments;
+        }
+        if (genres != null) {
+          updatedData[FirebaseFieldName.genres] = genres;
+        }
+        if (experience != null) {
+          updatedData[FirebaseFieldName.experience] = experience;
+        }
 
         if (updatedData.isNotEmpty) {
           await userInfo.docs.first.reference.update(updatedData);
@@ -44,7 +56,10 @@ class UserInfoStorage {
           userId: userId,
           displayName: displayName,
           email: email,
-          fcmToken: fcmToken);
+          fcmToken: fcmToken,
+          instruments: instruments,
+          genres: genres,
+          experience: experience);
 
       await FirebaseFirestore.instance
           .collection(FirebaseCollectionName.users)

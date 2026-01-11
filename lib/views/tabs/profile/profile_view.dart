@@ -32,48 +32,6 @@ class ProfileView extends ConsumerWidget {
                 backgroundColor: Colors.grey[300],
               ),
               const SizedBox(width: 16),
-              // Posts, Followers, Following
-              const Expanded(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          children: [
-                            Text(
-                              '15', // Replace with dynamic post count
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
-                            ),
-                            Text('Posts'),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              '120', // Replace with dynamic followers count
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
-                            ),
-                            Text('Followers'),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              '75', // Replace with dynamic following count
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
-                            ),
-                            Text('Following'),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
         ),

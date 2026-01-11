@@ -11,14 +11,15 @@ String _$postSettingsHash() => r'854be06b91004159af655b192d7c82a9f8bffa99';
 /// See also [PostSettings].
 @ProviderFor(PostSettings)
 final postSettingsProvider =
-AutoDisposeNotifierProvider<PostSettings, Map<PostSetting, bool>>.internal(
-  PostSettings.new,
-  name: r'postSettingsProvider',
-  debugGetCreateSourceHash:
-  const bool.fromEnvironment('dart.vm.product') ? null : _$postSettingsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+    AutoDisposeNotifierProvider<PostSettings, Map<PostSetting, bool>>.internal(
+      PostSettings.new,
+      name: r'postSettingsProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$postSettingsHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$PostSettings = AutoDisposeNotifier<Map<PostSetting, bool>>;
 // ignore_for_file: type=lint

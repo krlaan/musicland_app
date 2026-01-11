@@ -39,21 +39,15 @@ class PostLikesCountFamily extends Family<AsyncValue<int>> {
   const PostLikesCountFamily();
 
   /// See also [postLikesCount].
-  PostLikesCountProvider call(
-      String postId,
-      ) {
-    return PostLikesCountProvider(
-      postId,
-    );
+  PostLikesCountProvider call(String postId) {
+    return PostLikesCountProvider(postId);
   }
 
   @override
   PostLikesCountProvider getProviderOverride(
-      covariant PostLikesCountProvider provider,
-      ) {
-    return call(
-      provider.postId,
-    );
+    covariant PostLikesCountProvider provider,
+  ) {
+    return call(provider.postId);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -74,45 +68,40 @@ class PostLikesCountFamily extends Family<AsyncValue<int>> {
 /// See also [postLikesCount].
 class PostLikesCountProvider extends AutoDisposeStreamProvider<int> {
   /// See also [postLikesCount].
-  PostLikesCountProvider(
-      String postId,
-      ) : this._internal(
-        (ref) => postLikesCount(
-      ref as PostLikesCountRef,
-      postId,
-    ),
-    from: postLikesCountProvider,
-    name: r'postLikesCountProvider',
-    debugGetCreateSourceHash:
-    const bool.fromEnvironment('dart.vm.product')
-        ? null
-        : _$postLikesCountHash,
-    dependencies: PostLikesCountFamily._dependencies,
-    allTransitiveDependencies:
-    PostLikesCountFamily._allTransitiveDependencies,
-    postId: postId,
-  );
+  PostLikesCountProvider(String postId)
+    : this._internal(
+        (ref) => postLikesCount(ref as PostLikesCountRef, postId),
+        from: postLikesCountProvider,
+        name: r'postLikesCountProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$postLikesCountHash,
+        dependencies: PostLikesCountFamily._dependencies,
+        allTransitiveDependencies:
+            PostLikesCountFamily._allTransitiveDependencies,
+        postId: postId,
+      );
 
   PostLikesCountProvider._internal(
-      super._createNotifier, {
-        required super.name,
-        required super.dependencies,
-        required super.allTransitiveDependencies,
-        required super.debugGetCreateSourceHash,
-        required super.from,
-        required this.postId,
-      }) : super.internal();
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.postId,
+  }) : super.internal();
 
   final String postId;
 
   @override
   Override overrideWith(
-      Stream<int> Function(PostLikesCountRef provider) create,
-      ) {
+    Stream<int> Function(PostLikesCountRef provider) create,
+  ) {
     return ProviderOverride(
       origin: this,
       override: PostLikesCountProvider._internal(
-            (ref) => create(ref as PostLikesCountRef),
+        (ref) => create(ref as PostLikesCountRef),
         from: from,
         name: null,
         dependencies: null,
@@ -150,11 +139,13 @@ mixin PostLikesCountRef on AutoDisposeStreamProviderRef<int> {
 }
 
 class _PostLikesCountProviderElement
-    extends AutoDisposeStreamProviderElement<int> with PostLikesCountRef {
+    extends AutoDisposeStreamProviderElement<int>
+    with PostLikesCountRef {
   _PostLikesCountProviderElement(super.provider);
 
   @override
   String get postId => (origin as PostLikesCountProvider).postId;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

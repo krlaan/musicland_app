@@ -12,7 +12,8 @@ part of 'like_dislike_request.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$LikeDislikeRequest {
@@ -29,8 +30,9 @@ mixin _$LikeDislikeRequest {
 /// @nodoc
 abstract class $LikeDislikeRequestCopyWith<$Res> {
   factory $LikeDislikeRequestCopyWith(
-      LikeDislikeRequest value, $Res Function(LikeDislikeRequest) then) =
-  _$LikeDislikeRequestCopyWithImpl<$Res, LikeDislikeRequest>;
+    LikeDislikeRequest value,
+    $Res Function(LikeDislikeRequest) then,
+  ) = _$LikeDislikeRequestCopyWithImpl<$Res, LikeDislikeRequest>;
   @useResult
   $Res call({String postId, String likedBy});
 }
@@ -49,29 +51,30 @@ class _$LikeDislikeRequestCopyWithImpl<$Res, $Val extends LikeDislikeRequest>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? postId = null,
-    Object? likedBy = null,
-  }) {
-    return _then(_value.copyWith(
-      postId: null == postId
-          ? _value.postId
-          : postId // ignore: cast_nullable_to_non_nullable
-      as String,
-      likedBy: null == likedBy
-          ? _value.likedBy
-          : likedBy // ignore: cast_nullable_to_non_nullable
-      as String,
-    ) as $Val);
+  $Res call({Object? postId = null, Object? likedBy = null}) {
+    return _then(
+      _value.copyWith(
+            postId: null == postId
+                ? _value.postId
+                : postId // ignore: cast_nullable_to_non_nullable
+                      as String,
+            likedBy: null == likedBy
+                ? _value.likedBy
+                : likedBy // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$LikeDislikeRequestImplCopyWith<$Res>
     implements $LikeDislikeRequestCopyWith<$Res> {
-  factory _$$LikeDislikeRequestImplCopyWith(_$LikeDislikeRequestImpl value,
-      $Res Function(_$LikeDislikeRequestImpl) then) =
-  __$$LikeDislikeRequestImplCopyWithImpl<$Res>;
+  factory _$$LikeDislikeRequestImplCopyWith(
+    _$LikeDislikeRequestImpl value,
+    $Res Function(_$LikeDislikeRequestImpl) then,
+  ) = __$$LikeDislikeRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String postId, String likedBy});
@@ -81,28 +84,28 @@ abstract class _$$LikeDislikeRequestImplCopyWith<$Res>
 class __$$LikeDislikeRequestImplCopyWithImpl<$Res>
     extends _$LikeDislikeRequestCopyWithImpl<$Res, _$LikeDislikeRequestImpl>
     implements _$$LikeDislikeRequestImplCopyWith<$Res> {
-  __$$LikeDislikeRequestImplCopyWithImpl(_$LikeDislikeRequestImpl _value,
-      $Res Function(_$LikeDislikeRequestImpl) _then)
-      : super(_value, _then);
+  __$$LikeDislikeRequestImplCopyWithImpl(
+    _$LikeDislikeRequestImpl _value,
+    $Res Function(_$LikeDislikeRequestImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LikeDislikeRequest
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? postId = null,
-    Object? likedBy = null,
-  }) {
-    return _then(_$LikeDislikeRequestImpl(
-      postId: null == postId
-          ? _value.postId
-          : postId // ignore: cast_nullable_to_non_nullable
-      as String,
-      likedBy: null == likedBy
-          ? _value.likedBy
-          : likedBy // ignore: cast_nullable_to_non_nullable
-      as String,
-    ));
+  $Res call({Object? postId = null, Object? likedBy = null}) {
+    return _then(
+      _$LikeDislikeRequestImpl(
+        postId: null == postId
+            ? _value.postId
+            : postId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        likedBy: null == likedBy
+            ? _value.likedBy
+            : likedBy // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
@@ -140,13 +143,16 @@ class _$LikeDislikeRequestImpl implements _LikeDislikeRequest {
   @pragma('vm:prefer-inline')
   _$$LikeDislikeRequestImplCopyWith<_$LikeDislikeRequestImpl> get copyWith =>
       __$$LikeDislikeRequestImplCopyWithImpl<_$LikeDislikeRequestImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _LikeDislikeRequest implements LikeDislikeRequest {
-  const factory _LikeDislikeRequest(
-      {required final String postId,
-        required final String likedBy}) = _$LikeDislikeRequestImpl;
+  const factory _LikeDislikeRequest({
+    required final String postId,
+    required final String likedBy,
+  }) = _$LikeDislikeRequestImpl;
 
   @override
   String get postId;
