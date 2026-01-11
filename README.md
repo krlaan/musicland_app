@@ -16,9 +16,8 @@ The app will use Firebase for backend services: Authentication, Database, Offlin
 - Data Management - data from an external API or local source, data modification/saving via API calls. Used local database or device storage (SQLite, AsyncStorage, SharedPreferences etc.) for offline functionality. Included proper data validation and error handling.
 - User Interface (UI/UX) - Minimum of 5 different screens/views with distinct functionalities. Followed mobile UI/UX best practices and accessibility guidelines. Included proper navigation between screens.
 - Technical Architecture and Code Quality - demonstrated modular, well-structured code architecture. Code is readable, commented, and follow established patterns. Included proper error handling throughout the application.
-- Push Notifications - users receive alerts when someone expresses interest in their ad.
 - Social Login (Google) – login with Google account.
-- Other: Filtering ads by instrument or genre, Saving ads to favorites (offline supported)
+- Other: Searching ads by instrument or description, Saving ads to favorites.
 
 
 Thank you!
