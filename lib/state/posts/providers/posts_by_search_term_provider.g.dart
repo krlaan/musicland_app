@@ -6,7 +6,7 @@ part of 'posts_by_search_term_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$postsBySearchTermHash() => r'3aea4b383433e99c3e8eebd15dc1840f68db8c0a';
+String _$postsBySearchTermHash() => r'91ffd5deed0b2169454212a6526053f30979927e';
 
 /// Copied from Dart SDK
 class _SystemHash {

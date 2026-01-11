@@ -6,6 +6,7 @@ import 'package:musicland_app/state/posts/providers/can_user_delete_post_provide
 import 'package:musicland_app/state/posts/providers/delete_post_provider.dart';
 import 'package:musicland_app/state/user_info/providers/user_info_provider.dart';
 import 'package:musicland_app/views/components/likes/like_button.dart';
+import 'package:musicland_app/views/components/likes/likes_count_view.dart';
 import 'package:musicland_app/views/constants/strings.dart';
 import 'package:musicland_app/views/dialogs/alert_dialog_model.dart';
 import 'package:musicland_app/views/dialogs/delete_dialog.dart';
@@ -68,7 +69,12 @@ class PostDetailsView extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      LikeButton(postId: post.postId),
+                      Column(
+                        children: [
+                          LikeButton(postId: post.postId),
+                          LikesCountView(postId: post.postId),
+                        ],
+                      ),
                     ],
                   ),
                   const SizedBox(height: 12),
