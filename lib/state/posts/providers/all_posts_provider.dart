@@ -31,13 +31,8 @@ Stream<Iterable<Post>> allPosts(Ref ref) {
   emitCache();
 
   final sub = FirebaseFirestore.instance
-      .collection(
-    FirebaseCollectionName.posts,
-  )
-      .orderBy(
-    FirebaseFieldName.createdAt,
-    descending: true,
-  )
+      .collection(FirebaseCollectionName.posts)
+      .orderBy(FirebaseFieldName.createdAt, descending: true)
       .snapshots()
       .listen(
         (snapshots) {
@@ -49,6 +44,7 @@ Stream<Iterable<Post>> allPosts(Ref ref) {
             ),
           )
           .toList();
+
       controller.sink.add(posts);
 
       // Save to cache
