@@ -90,7 +90,7 @@ class Authentication extends _$Authentication {
       final displayName = _authenticator.currentUserDisplayName;
       final email = _authenticator.currentUserEmail;
       
-      // Always create/update user info for Google sign-in
+      // Create user info with empty instruments and genres so profile setup form appears
       await saveUserInfo(
         userId: userId,
         email: email,

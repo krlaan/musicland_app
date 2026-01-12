@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:musicland_app/state/auth/providers/is_logged_in_provider.dart';
 import 'package:musicland_app/state/auth/providers/user_id_provider.dart';
 import 'package:musicland_app/state/is_loading/providers/is_loading_provider.dart';
@@ -8,6 +7,7 @@ import 'package:musicland_app/state/user_info/providers/user_info_provider.dart'
 import 'package:musicland_app/views/authentication/login/login_view.dart';
 import 'package:musicland_app/views/components/loading/loading_screen.dart';
 import 'package:musicland_app/views/main/main_view.dart';
+import 'package:musicland_app/views/profile_setup/profile_setup_view.dart';
 
 class AuthView extends ConsumerWidget {
   const AuthView({super.key});
@@ -38,27 +38,16 @@ class AuthView extends ConsumerWidget {
         data: (userInfo) {
           // Check if profile needs setup
           if (userInfo.instruments.isEmpty || userInfo.genres.isEmpty) {
-            // Redirect to profile setup
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              context.go('/profile-setup');
-            });
-            return const Scaffold(
-              body: Center(child: CircularProgressIndicator()),
-            );
+            return const ProfileSetupView();
           }
           return const MainView();
         },
         loading: () => const Scaffold(
           body: Center(child: CircularProgressIndicator()),
         ),
-        error: (_, __) {
-          // If user info doesn't exist, go to profile setup
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            context.go('/profile-setup');
-          });
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
+        error: (_, _) {
+          // If user info doesn't exist, show setup
+          return const ProfileSetupView();
         },
       );
     } else {
