@@ -3,6 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:musicland_app/state/posts/models/post.dart';
 import 'package:musicland_app/state/user_info/providers/user_info_provider.dart';
 import 'package:musicland_app/views/components/likes/like_button.dart';
+import 'package:musicland_app/views/constants/app_colors.dart';
+
+import '../animations/error_animation_view.dart';
+import '../animations/loading_animation_view.dart';
 
 class PostThumbnailView extends ConsumerWidget {
   final Post post;
@@ -23,7 +27,6 @@ class PostThumbnailView extends ConsumerWidget {
     return GestureDetector(
       onTap: onTapped,
       child: Card(
-        elevation: 3,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -44,7 +47,7 @@ class PostThumbnailView extends ConsumerWidget {
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
-                            color: Colors.black87,
+                            color: AppColors.black,
                           ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -55,12 +58,13 @@ class PostThumbnailView extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 6),
+
               // Description
               Text(
                 post.message,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontSize: 16,
-                      color: Colors.grey[700],
+                      color: AppColors.darkGrey,
                       height: 1.4,
                     ),
                 maxLines: 3,
@@ -69,11 +73,12 @@ class PostThumbnailView extends ConsumerWidget {
               const SizedBox(height: 16),
               // Divider
               Divider(
-                color: Colors.grey[400],
+                color: AppColors.lightGrey,
                 thickness: 1.5,
                 height: 1,
               ),
               const SizedBox(height: 4),
+
               // Genre and Experience from user profile
               userInfoModel.when(
                 data: (userInfo) {
@@ -87,7 +92,7 @@ class PostThumbnailView extends ConsumerWidget {
                           child: Row(
                             children: [
                               Icon(Icons.music_note,
-                                  size: 18, color: Colors.blue[700]),
+                                  size: 18, color: AppColors.lightBlue),
                               const SizedBox(width: 6),
                               Expanded(
                                 child: Text(
@@ -95,7 +100,7 @@ class PostThumbnailView extends ConsumerWidget {
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
-                                    color: Colors.blue[700],
+                                    color: AppColors.lightBlue,
                                   ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -108,14 +113,14 @@ class PostThumbnailView extends ConsumerWidget {
                         Row(
                           children: [
                             Icon(Icons.star,
-                                size: 18, color: Colors.amber[700]),
+                                size: 18, color: AppColors.gold),
                             const SizedBox(width: 6),
                             Text(
                               '${post.experience} years',
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.amber[700],
+                                color: AppColors.gold,
                               ),
                             ),
                           ],
@@ -123,12 +128,8 @@ class PostThumbnailView extends ConsumerWidget {
                     ],
                   );
                 },
-                error: (_, _) => const SizedBox.shrink(),
-                loading: () => const SizedBox(
-                  height: 16,
-                  width: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                ),
+                loading: () => const LoadingAnimationView(),
+                error: (_, _) => const ErrorAnimationView(),
               ),
             ],
           ),

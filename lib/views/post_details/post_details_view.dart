@@ -10,6 +10,10 @@ import 'package:musicland_app/views/components/likes/likes_count_view.dart';
 import 'package:musicland_app/views/constants/strings.dart';
 import 'package:musicland_app/views/dialogs/alert_dialog_model.dart';
 import 'package:musicland_app/views/dialogs/delete_dialog.dart';
+import 'package:musicland_app/views/constants/app_colors.dart';
+
+import '../components/animations/error_animation_view.dart';
+import '../components/animations/loading_animation_view.dart';
 
 class PostDetailsView extends ConsumerWidget {
   final Post post;
@@ -80,20 +84,22 @@ class PostDetailsView extends ConsumerWidget {
                   const SizedBox(height: 12),
                   // Divider line
                   const Divider(
-                    color: Colors.black,
+                    color: AppColors.black,
                     thickness: 1.5,
                     height: 1,
                   ),
                   const SizedBox(height: 12),
+
                   // Looking for
                   Text(
                     'Looking for: ${post.instrument}',
                     style: const TextStyle(
                       fontSize: 16,
-                      color: Colors.black,
+                      color: AppColors.black,
                     ),
                   ),
                   const SizedBox(height: 12),
+
                   // Genre and Experience
                   userInfo.when(
                     data: (userData) {
@@ -106,7 +112,7 @@ class PostDetailsView extends ConsumerWidget {
                               child: Row(
                                 children: [
                                   Icon(Icons.music_note,
-                                      size: 18, color: Colors.blue[700]),
+                                      size: 18, color: AppColors.lightBlue),
                                   const SizedBox(width: 6),
                                   Expanded(
                                     child: Text(
@@ -114,7 +120,7 @@ class PostDetailsView extends ConsumerWidget {
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w500,
-                                        color: Colors.blue[700],
+                                        color: AppColors.lightBlue,
                                       ),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
@@ -127,14 +133,14 @@ class PostDetailsView extends ConsumerWidget {
                             Row(
                               children: [
                                 Icon(Icons.star,
-                                    size: 18, color: Colors.amber[700]),
+                                    size: 18, color: AppColors.gold),
                                 const SizedBox(width: 6),
                                 Text(
                                   '${userData.experience} years',
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
-                                    color: Colors.amber[700],
+                                    color: AppColors.gold,
                                   ),
                                 ),
                               ],
@@ -142,20 +148,17 @@ class PostDetailsView extends ConsumerWidget {
                         ],
                       );
                     },
-                    loading: () => const SizedBox(
-                      height: 16,
-                      width: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    ),
-                    error: (_, _) => const SizedBox.shrink(),
+                    loading: () => const LoadingAnimationView(),
+                    error: (_, _) => const ErrorAnimationView(),
                   ),
                   const SizedBox(height: 16),
+
                   // Description box
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(12.0),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[700]!),
+                      border: Border.all(color: AppColors.darkGrey!),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -168,7 +171,7 @@ class PostDetailsView extends ConsumerWidget {
               ),
             ),
             Divider(
-              color: Colors.grey[400],
+              color: AppColors.lightGrey,
               thickness: 1.5,
             ),
             Padding(
@@ -181,7 +184,7 @@ class PostDetailsView extends ConsumerWidget {
                       // Username
                       Center(
                         child: Text(
-                          '@${userData.displayName}',
+                          userData.displayName,
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -195,7 +198,7 @@ class PostDetailsView extends ConsumerWidget {
                           'Instrument',
                           style: TextStyle(
                             fontSize: 14,
-                            color: Colors.grey,
+                            color: AppColors.grey,
                           ),
                         ),
                       ),
@@ -204,11 +207,12 @@ class PostDetailsView extends ConsumerWidget {
                         child: Text(
                           userData.instruments.isNotEmpty
                               ? userData.instruments.join(', ')
-                              : '-',
+                              : 'not added yet',
                           style: const TextStyle(fontSize: 16),
                         ),
                       ),
                       const SizedBox(height: 12),
+
                       // Genres and Experience
                       Row(
                         children: [
@@ -220,20 +224,21 @@ class PostDetailsView extends ConsumerWidget {
                                   'Genres',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.grey,
+                                    color: AppColors.grey,
                                   ),
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
                                   userData.genres.isNotEmpty
                                       ? userData.genres.join(', ')
-                                      : '-',
+                                      : 'not added yet',
                                   style: const TextStyle(fontSize: 16),
                                 ),
                               ],
                             ),
                           ),
                           const SizedBox(width: 24),
+
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
@@ -242,14 +247,14 @@ class PostDetailsView extends ConsumerWidget {
                                   'Experience',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.grey,
+                                    color: AppColors.grey,
                                   ),
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
                                   post.experience.isNotEmpty
                                       ? '${post.experience} years'
-                                      : '-',
+                                      : 'not added yet',
                                   style: const TextStyle(fontSize: 16),
                                 ),
                               ],
@@ -260,11 +265,12 @@ class PostDetailsView extends ConsumerWidget {
                       const SizedBox(height: 16),
                       // Divider line
                       Divider(
-                        color: Colors.grey[400],
+                        color: AppColors.lightGrey,
                         thickness: 1.5,
                         height: 1,
                       ),
                       const SizedBox(height: 16),
+
                       // Contact me section
                       const Center(
                         child: Text(
@@ -281,17 +287,15 @@ class PostDetailsView extends ConsumerWidget {
                           userData.email ?? 'No email provided',
                           style: const TextStyle(
                             fontSize: 16,
-                            color: Colors.blue,
+                            color: AppColors.blue,
                           ),
                         ),
                       ),
                     ],
                   );
                 },
-                loading: () => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-                error: (error, stackTrace) => Text('Error: $error'),
+                loading: () => const LoadingAnimationView(),
+                error: (_, _) => const ErrorAnimationView(),
               ),
             ),
           ],

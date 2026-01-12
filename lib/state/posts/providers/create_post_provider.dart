@@ -21,6 +21,7 @@ class CreatePost extends _$CreatePost {
     state = true;
     try {
       final userId = ref.read(userIdProvider);
+
       if (userId == null) {
         return false;
       }
