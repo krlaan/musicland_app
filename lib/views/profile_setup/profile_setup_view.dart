@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:musicland_app/state/auth/providers/user_id_provider.dart';
 import 'package:musicland_app/state/user_info/backend/user_info_storage.dart';
 import 'package:musicland_app/state/user_info/providers/user_info_provider.dart';
+import 'package:musicland_app/views/constants/app_colors.dart';
+import 'package:musicland_app/views/profile_setup/constants.dart';
 
 class ProfileSetupView extends ConsumerStatefulWidget {
   const ProfileSetupView({super.key});
@@ -14,30 +16,8 @@ class ProfileSetupView extends ConsumerStatefulWidget {
 }
 
 class _ProfileSetupViewState extends ConsumerState<ProfileSetupView> {
-  // Instruments
-  static const instruments = [
-    'Guitar',
-    'Bass',
-    'Drums',
-    'Keyboard',
-    'Vocals',
-    'Violin',
-    'Saxophone',
-    'Trumpet',
-  ];
-  final selectedInstruments = <String>{};
 
-  // Genres
-  static const genres = [
-    'Metal',
-    'Rock',
-    'Pop',
-    'Jazz',
-    'Blues',
-    'Classical',
-    'Electronic',
-    'Hip-Hop',
-  ];
+  final selectedInstruments = <String>{};
   final selectedGenres = <String>{};
 
   // Experience
@@ -59,9 +39,13 @@ class _ProfileSetupViewState extends ConsumerState<ProfileSetupView> {
     try {
       await const UserInfoStorage().saveOrUpdateUserInfo(
         userId: userId,
-        instruments: selectedInstruments.isNotEmpty ? selectedInstruments.toList() : null,
+        instruments: selectedInstruments.isNotEmpty
+            ? selectedInstruments.toList()
+            : null,
         genres: selectedGenres.isNotEmpty ? selectedGenres.toList() : null,
-        experience: experienceController.text.isEmpty ? null : experienceController.text,
+        experience: experienceController.text.isEmpty
+            ? null
+            : experienceController.text,
       );
 
       if (mounted) {
@@ -70,9 +54,9 @@ class _ProfileSetupViewState extends ConsumerState<ProfileSetupView> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: $e')));
       }
     } finally {
       if (mounted) {
@@ -84,10 +68,7 @@ class _ProfileSetupViewState extends ConsumerState<ProfileSetupView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile Setup'),
-        automaticallyImplyLeading: false,
-      ),
+      appBar: AppBar(title: const Text('Profile Setup')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -96,24 +77,18 @@ class _ProfileSetupViewState extends ConsumerState<ProfileSetupView> {
             // Instruments Section
             const Text(
               'Instrument',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             const Text(
               'Choose one or many',
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey,
-              ),
+              style: TextStyle(fontSize: 14, color: Colors.grey),
             ),
             const SizedBox(height: 12),
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: instruments.map((instrument) {
+              children: ProfileSetupConstants.instruments.map((instrument) {
                 final isSelected = selectedInstruments.contains(instrument);
                 return FilterChip(
                   label: Text(instrument),
@@ -135,24 +110,18 @@ class _ProfileSetupViewState extends ConsumerState<ProfileSetupView> {
             // Genres Section
             const Text(
               'Genre',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             const Text(
               'Choose one or many',
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey,
-              ),
+              style: TextStyle(fontSize: 14, color: Colors.grey),
             ),
             const SizedBox(height: 12),
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: genres.map((genre) {
+              children: ProfileSetupConstants.genres.map((genre) {
                 final isSelected = selectedGenres.contains(genre);
                 return FilterChip(
                   label: Text(genre),
@@ -174,18 +143,13 @@ class _ProfileSetupViewState extends ConsumerState<ProfileSetupView> {
             // Experience Section
             const Text(
               'Experience',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             TextField(
               controller: experienceController,
               keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               decoration: const InputDecoration(
                 hintText: 'Enter years (e.g. 1, 5, 10)',
                 border: OutlineInputBorder(),
@@ -193,23 +157,19 @@ class _ProfileSetupViewState extends ConsumerState<ProfileSetupView> {
             ),
             const SizedBox(height: 32),
 
-            // Save Button
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _isLoading ? null : _saveSetup,
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: AppColors.lightGreen,
+                  foregroundColor: AppColors.black,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                 ),
-                child: _isLoading
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : const Text('SAVE'),
+                onPressed: _isLoading ? null : _saveSetup,
+                child: const Text("SAVE", style: TextStyle(fontSize: 14)),
               ),
             ),
+            const SizedBox(height: 4),
           ],
         ),
       ),

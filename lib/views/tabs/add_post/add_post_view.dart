@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:musicland_app/state/posts/providers/all_posts_provider.dart';
 import 'package:musicland_app/state/posts/providers/create_post_provider.dart';
+import 'package:musicland_app/views/profile_setup/constants.dart';
+import 'package:musicland_app/views/constants/app_colors.dart';
 
 class AddPostView extends ConsumerStatefulWidget {
   const AddPostView({super.key});
@@ -15,24 +17,8 @@ class _AddPostViewState extends ConsumerState<AddPostView> {
   late final TextEditingController titleController;
   late final TextEditingController descriptionController;
   late final TextEditingController experienceController;
+
   String? selectedInstrument;
-
-  final instruments = [
-    'Guitar',
-    'Bass',
-    'Drums',
-    'Keyboard',
-    'Vocals',
-    'Violin',
-    'Saxophone',
-    'Trumpet',
-  ];
-
-  bool get isPostButtonEnabled =>
-      titleController.text.isNotEmpty &&
-          descriptionController.text.isNotEmpty &&
-          experienceController.text.isNotEmpty &&
-          selectedInstrument != null;
 
   @override
   void initState() {
@@ -40,9 +26,6 @@ class _AddPostViewState extends ConsumerState<AddPostView> {
     titleController = TextEditingController();
     descriptionController = TextEditingController();
     experienceController = TextEditingController();
-    titleController.addListener(_updateButtonState);
-    descriptionController.addListener(_updateButtonState);
-    experienceController.addListener(_updateButtonState);
   }
 
   @override
@@ -53,8 +36,24 @@ class _AddPostViewState extends ConsumerState<AddPostView> {
     super.dispose();
   }
 
-  void _updateButtonState() {
-    setState(() {});
+  bool _validateFields() {
+    if (titleController.text.isEmpty ||
+        descriptionController.text.isEmpty ||
+        experienceController.text.isEmpty ||
+        selectedInstrument == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill all fields!')),
+      );
+      return false;
+    }
+    return true;
+  }
+
+  void _clearFields() {
+    titleController.clear();
+    descriptionController.clear();
+    experienceController.clear();
+    setState(() => selectedInstrument = null);
   }
 
   @override
@@ -91,7 +90,7 @@ class _AddPostViewState extends ConsumerState<AddPostView> {
             const SizedBox(height: 8),
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey[700]!),
+                border: Border.all(color: AppColors.grey),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: DropdownButton<String>(
@@ -100,8 +99,8 @@ class _AddPostViewState extends ConsumerState<AddPostView> {
                 underline: const SizedBox(),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 hint: const Text('Choose instrument', style: TextStyle(fontSize: 16)),
-                style: const TextStyle(fontSize: 16, color: Colors.black),
-                items: instruments.map((instrument) {
+                style: const TextStyle(fontSize: 16, color: AppColors.black),
+                items: ProfileSetupConstants.instruments.map((instrument) {
                   return DropdownMenuItem<String>(
                     value: instrument,
                     child: Text(instrument),
@@ -160,11 +159,12 @@ class _AddPostViewState extends ConsumerState<AddPostView> {
             ),
             const SizedBox(height: 32),
 
-            // Post button
-            ElevatedButton(
-              onPressed: isPostButtonEnabled
-                  ? () async {
+            // Create button
+            TextButton(
+              onPressed: () async {
                 FocusManager.instance.primaryFocus?.unfocus();
+
+                if (!_validateFields()) return;
 
                 final success = await ref.read(createPostProvider.notifier).createPost(
                   title: titleController.text,
@@ -176,13 +176,7 @@ class _AddPostViewState extends ConsumerState<AddPostView> {
                 if (success && context.mounted) {
                   ref.invalidate(allPostsProvider);
 
-                  // Clear all fields
-                  titleController.clear();
-                  descriptionController.clear();
-                  experienceController.clear();
-                  setState(() {
-                    selectedInstrument = null;
-                  });
+                  _clearFields();
 
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Post created successfully!')),
@@ -192,12 +186,11 @@ class _AddPostViewState extends ConsumerState<AddPostView> {
                     const SnackBar(content: Text('Failed to create post')),
                   );
                 }
-              }
-                  : null,
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                backgroundColor: isPostButtonEnabled ? Colors.green : null,
-                foregroundColor: isPostButtonEnabled ? Colors.white : null,
+              },
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                backgroundColor: AppColors.green,
+                foregroundColor: AppColors.white,
               ),
               child: const Text('CREATE', style: TextStyle(fontSize: 16)),
             ),
