@@ -18,11 +18,6 @@ Stream<Iterable<Post>> userPosts(Ref ref) {
   final userId = ref.watch(userIdProvider);
   final controller = StreamController<Iterable<Post>>();
 
-  if (userId == null) {
-    controller.sink.add([]);
-    return controller.stream;
-  }
-
   // Load cache first (offline support)
   Future<void> emitCache() async {
     final prefs = await SharedPreferences.getInstance();
