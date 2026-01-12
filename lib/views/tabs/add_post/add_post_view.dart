@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:musicland_app/state/posts/providers/all_posts_provider.dart';
 import 'package:musicland_app/state/posts/providers/create_post_provider.dart';
@@ -124,6 +125,9 @@ class _AddPostViewState extends ConsumerState<AddPostView> {
             TextField(
               controller: experienceController,
               keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
               style: const TextStyle(fontSize: 16),
               decoration: InputDecoration(
                 hintText: 'Enter years of experience',

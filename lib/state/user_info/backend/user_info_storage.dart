@@ -11,7 +11,6 @@ class UserInfoStorage {
     required UserId userId,
     String? displayName,
     String? email,
-    String? fcmToken,
     List<String>? instruments,
     List<String>? genres,
     String? experience,
@@ -31,9 +30,6 @@ class UserInfoStorage {
         }
         if (email != null) {
           updatedData[FirebaseFieldName.email] = email;
-        }
-        if (fcmToken != null) {
-          updatedData[FirebaseFieldName.fcmToken] = fcmToken;
         }
         if (instruments != null) {
           updatedData[FirebaseFieldName.instruments] = instruments;
@@ -56,7 +52,6 @@ class UserInfoStorage {
           userId: userId,
           displayName: displayName,
           email: email,
-          fcmToken: fcmToken,
           instruments: instruments,
           genres: genres,
           experience: experience);
