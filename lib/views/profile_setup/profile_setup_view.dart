@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:musicland_app/state/auth/providers/user_id_provider.dart';
@@ -182,6 +183,9 @@ class _ProfileSetupViewState extends ConsumerState<ProfileSetupView> {
             TextField(
               controller: experienceController,
               keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
               decoration: const InputDecoration(
                 hintText: 'Enter years (e.g. 1, 5, 10)',
                 border: OutlineInputBorder(),

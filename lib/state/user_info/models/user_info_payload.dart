@@ -10,7 +10,6 @@ class UserInfoPayload extends MapView<String, dynamic> {
     required UserId userId,
     required String? displayName,
     required String? email,
-    required String? fcmToken,
     List<String>? instruments,
     List<String>? genres,
     String? experience,
@@ -19,7 +18,6 @@ class UserInfoPayload extends MapView<String, dynamic> {
       FirebaseFieldName.userId: userId,
       FirebaseFieldName.displayName: displayName ?? '',
       FirebaseFieldName.email: email ?? '',
-      FirebaseFieldName.fcmToken: fcmToken ?? '',
       FirebaseFieldName.instruments: instruments ?? '',
       FirebaseFieldName.genres: genres ?? '',
       FirebaseFieldName.experience: experience ?? ''
