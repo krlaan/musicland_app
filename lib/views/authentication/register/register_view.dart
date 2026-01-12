@@ -79,7 +79,7 @@ class RegisterViewState extends ConsumerState<RegisterView> {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text("User already exists!"),
-                backgroundColor: Colors.red,
+                backgroundColor: AppColors.red,
               ),
             );
           }
@@ -139,8 +139,9 @@ class RegisterViewState extends ConsumerState<RegisterView> {
                 const SizedBox(height: 16),
                 TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.lightGreen,
-                    foregroundColor: Colors.black,
+                    backgroundColor: AppColors.lightGreen,
+                    foregroundColor: AppColors.black,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
                   onPressed: _attemptRegister,
                   child: const Text(
@@ -148,7 +149,6 @@ class RegisterViewState extends ConsumerState<RegisterView> {
                   ),
                 ),
                 const DividerWithMargins(20),
-                //const LoginViewSignupLinks(),
               ],
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:musicland_app/firebase_options.dart';
 import 'package:musicland_app/router/router.dart';
+import 'package:musicland_app/views/constants/app_colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,16 +26,12 @@ class _MyAppState extends ConsumerState<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: router,
-      title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        scaffoldBackgroundColor: const Color(0xFFFFFBF0),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFFFFF8E1),
-          foregroundColor: Colors.black87,
-          elevation: 0,
+        scaffoldBackgroundColor: AppColors.backgroundColor,
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.upperBackgroundColor,
+          foregroundColor: AppColors.black,
         ),
-        useMaterial3: true,
       ),
     );
   }

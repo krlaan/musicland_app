@@ -51,7 +51,7 @@ class LoginViewState extends ConsumerState<LoginView> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text("Wrong email or password!"),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.red,
           ),
         );
       }
@@ -81,6 +81,7 @@ class LoginViewState extends ConsumerState<LoginView> {
                   ).textTheme.bodyMedium?.copyWith(height: 1.5),
                 ),
                 const SizedBox(height: 20),
+
                 // Email field
                 TextFormField(
                   controller: _emailController,
@@ -93,6 +94,7 @@ class LoginViewState extends ConsumerState<LoginView> {
                       validateEmail, //-> (String? value) => _validateEmail(value)
                 ),
                 const SizedBox(height: 16),
+
                 // Password field
                 TextFormField(
                   controller: _passwordController,
@@ -105,53 +107,36 @@ class LoginViewState extends ConsumerState<LoginView> {
                 ),
                 const SizedBox(height: 16),
 
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.lightGreen,
-                    foregroundColor: Colors.black,
+                TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: AppColors.lightGreen,
+                    foregroundColor: AppColors.black,
                     padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
                   onPressed: authProvider.isLoading ? null : _attemptLogin,
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(fontSize: 14),
-                  ),
+                  child: const Text("Login", style: TextStyle(fontSize: 14)),
                 ),
                 const SizedBox(height: 4),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey,
-                    foregroundColor: Colors.white,
+
+                TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: AppColors.grey,
+                    foregroundColor: AppColors.white,
                     padding: const EdgeInsets.symmetric(vertical: 12),
                   ),
                   onPressed: () {
                     context.push("/register");
                   },
-                  child: const Text(
-                    "Register",
-                    style: TextStyle(fontSize: 14),
-                  ),
+                  child: const Text("Register", style: TextStyle(fontSize: 14)),
                 ),
 
                 const DividerWithMargins(20),
-                Text(
-                  'Or continue with',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                Text('Or continue with', textAlign: TextAlign.center),
                 const SizedBox(height: 16),
-                OutlinedButton.icon(
-                  icon: Image.asset(
-                    'assets/google_logo.png',
-                    height: 24,
-                    errorBuilder: (context, error, stackTrace) {
-                      return const Icon(Icons.g_mobiledata, size: 24);
-                    },
-                  ),
-                  label: const Text('Sign in with Google'),
-                  style: OutlinedButton.styleFrom(
+                TextButton(
+                  style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 12),
-                    side: const BorderSide(color: Colors.grey),
+                    side: const BorderSide(color: AppColors.grey),
                   ),
                   onPressed: authProvider.isLoading
                       ? null
@@ -161,8 +146,8 @@ class LoginViewState extends ConsumerState<LoginView> {
                           );
                           await authNotifier.signInWithGoogle();
                         },
+                  child: const Text("Sign in with Google", style: TextStyle(fontSize: 14)),
                 ),
-                //const LoginViewSignupLinks(),
               ],
             ),
           ),

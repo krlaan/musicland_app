@@ -26,14 +26,10 @@ class AuthView extends ConsumerWidget {
     
     if (isLoggedIn) {
       final userId = ref.watch(userIdProvider);
-      
-      if (userId == null) {
-        return const LoginView();
-      }
-      
+
       // Check if profile setup is needed
-      final userInfoAsync = ref.watch(userInfoModelProvider(userId));
-      
+      final userInfoAsync = ref.watch(userInfoModelProvider(userId!));
+
       return userInfoAsync.when(
         data: (userInfo) {
           // Check if profile needs setup

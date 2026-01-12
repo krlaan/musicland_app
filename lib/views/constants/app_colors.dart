@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 @immutable
 class AppColors {
-  static var primaryColor = const Color(0xffffa000);
-  static var secondaryColor = const Color(0xffff5722);
-  static const loginButtonTextColor = Colors.black;
-  static var background = const Color(0xFFFFF8E1);
+  static var upperBackgroundColor = const Color(0xFFFFF8E1);
+  static var backgroundColor = const Color(0xFFFFFBF0);
+
+  static const black = Colors.black;
+  static const grey = Colors.grey;
+  static const red = Colors.red;
+  static const lightGreen = Colors.lightGreen;
+  static const white = Colors.white;
 
   const AppColors._();
 }
