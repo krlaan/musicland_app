@@ -5,6 +5,7 @@ import 'package:musicland_app/state/auth/providers/user_id_provider.dart';
 import 'package:musicland_app/state/user_info/providers/user_info_provider.dart';
 import 'package:musicland_app/views/components/animations/error_animation_view.dart';
 import 'package:musicland_app/views/components/animations/loading_animation_view.dart';
+import 'package:musicland_app/views/constants/app_colors.dart';
 
 class ProfileView extends ConsumerWidget {
   const ProfileView({super.key});
@@ -38,7 +39,7 @@ class ProfileView extends ConsumerWidget {
                           'Name',
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.grey,
+                            color: AppColors.grey,
                           ),
                         ),
                         Text(
@@ -69,12 +70,13 @@ class ProfileView extends ConsumerWidget {
               Text(
                 userInfo.instruments.isNotEmpty
                     ? userInfo.instruments.join(', ')
-                    : '-',
+                    : 'not added yet',
                 style: const TextStyle(fontSize: 17),
               ),
               const SizedBox(height: 16),
               const Divider(height: 1),
               const SizedBox(height: 16),
+
               const Text(
                 'Genres',
                 style: TextStyle(
@@ -84,12 +86,15 @@ class ProfileView extends ConsumerWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                userInfo.genres.isNotEmpty ? userInfo.genres.join(', ') : '-',
+                userInfo.genres.isNotEmpty
+                    ? userInfo.genres.join(', ')
+                    : 'not added yet',
                 style: const TextStyle(fontSize: 17),
               ),
               const SizedBox(height: 16),
               const Divider(height: 1),
               const SizedBox(height: 16),
+
               const Text(
                 'Experience',
                 style: TextStyle(
@@ -101,7 +106,7 @@ class ProfileView extends ConsumerWidget {
               Text(
                 userInfo.experience != null && userInfo.experience!.isNotEmpty
                     ? '${userInfo.experience} years'
-                    : '-',
+                    : 'not added yet',
                 style: const TextStyle(fontSize: 17),
               ),
               const SizedBox(height: 16),
@@ -109,12 +114,14 @@ class ProfileView extends ConsumerWidget {
               const SizedBox(height: 32),
 
               // Edit button
-              ElevatedButton(
+              TextButton(
                 onPressed: () {
                   context.push('/profile-setup');
                 },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                style: TextButton.styleFrom(
+                  backgroundColor: AppColors.lightGrey,
+                  foregroundColor: AppColors.black,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                 ),
                 child: const Text('EDIT', style: TextStyle(fontSize: 16)),
               ),

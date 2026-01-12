@@ -123,14 +123,14 @@ class PostDetailsView extends ConsumerWidget {
                                 ],
                               ),
                             ),
-                          if (post.experience.isNotEmpty)
+                          if (userData.experience != null && userData.experience!.isNotEmpty)
                             Row(
                               children: [
                                 Icon(Icons.star,
                                     size: 18, color: Colors.amber[700]),
                                 const SizedBox(width: 6),
                                 Text(
-                                  '${post.experience} years',
+                                  '${userData.experience} years',
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
