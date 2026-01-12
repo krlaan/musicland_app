@@ -15,7 +15,6 @@ class Authenticator {
   String? get currentUserDisplayName => FirebaseAuth.instance.currentUser?.displayName;
 
   Future<void> logOut() async {
-    await GoogleSignIn().disconnect(); // Полностью отключает Google аккаунт
     await GoogleSignIn().signOut();
     await FirebaseAuth.instance.signOut();
   }
