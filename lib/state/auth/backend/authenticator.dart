@@ -56,7 +56,6 @@ class Authenticator {
 
   Future<AuthResult> signInWithGoogle() async {
     try {
-      // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
       // If user cancels the sign-in

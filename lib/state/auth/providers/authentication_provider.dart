@@ -90,11 +90,11 @@ class Authentication extends _$Authentication {
       final displayName = _authenticator.currentUserDisplayName;
       final email = _authenticator.currentUserEmail;
       
-      // Create user info with empty instruments and genres so profile setup form appears
+      // Create user info so profile setup form appears
       await saveUserInfo(
         userId: userId,
         email: email,
-        name: displayName ?? email?.split('@').first ?? 'User',
+        name: displayName,
       );
     }
 

@@ -5,7 +5,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'is_loading_provider.g.dart';
 
-// TODO(all): Will add more providers here later
 @riverpod
 bool isLoading(Ref ref) {
   final authProvider = ref.watch(authenticationProvider);
