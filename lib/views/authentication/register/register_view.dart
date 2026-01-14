@@ -44,7 +44,6 @@ class RegisterViewState extends ConsumerState<RegisterView> {
           email: email, name: name, password: password);
 
       final currentUser = FirebaseAuth.instance.currentUser;
-      print('CURRENT USER: $currentUser');
 
       if (currentUser != null) {
         await FirebaseFirestore.instance
@@ -55,9 +54,6 @@ class RegisterViewState extends ConsumerState<RegisterView> {
           'name': name,
           'createdAt': FieldValue.serverTimestamp(),
         });
-        print('Firestore debug write done!');
-      } else {
-        print('User is null, Firestore write skipped!');
       }
     }
   }
