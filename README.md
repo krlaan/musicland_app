@@ -9,7 +9,7 @@ Mobile platform for musicians to find collaboration opportunities. Users can cre
 The target users are musicians of all levels in Estonia who want to connect with other musicians for collaboration. They are amateur and professional musicians and individuals looking for band members. The audience is mainly aged 14–40.
 
 ## Backend/Services
-The app will use Firebase for backend services: Authentication, Database, Offline Support, Push Notifications. 
+The app will use Firebase for backend services: Authentication, Database, Offline Support. 
 
 ## Features
 - User Authentication - user registration and login functionality using Firebase. Included proper error handling for login failures
