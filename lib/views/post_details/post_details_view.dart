@@ -129,22 +129,21 @@ class PostDetailsView extends ConsumerWidget {
                                 ],
                               ),
                             ),
-                          if (userData.experience != null && userData.experience!.isNotEmpty)
-                            Row(
-                              children: [
-                                Icon(Icons.star,
-                                    size: 18, color: AppColors.gold),
-                                const SizedBox(width: 6),
-                                Text(
-                                  '${userData.experience} years',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.gold,
-                                  ),
+                          Row(
+                            children: [
+                              Icon(Icons.star,
+                                  size: 18, color: AppColors.gold),
+                              const SizedBox(width: 6),
+                              Text(
+                                '${post.experience} years',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.gold,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
+                          ),
                         ],
                       );
                     },
@@ -252,8 +251,9 @@ class PostDetailsView extends ConsumerWidget {
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  post.experience.isNotEmpty
-                                      ? '${post.experience} years'
+
+                                  userData.experience != null
+                                      ? '${userData.experience} years'
                                       : 'not added yet',
                                   style: const TextStyle(fontSize: 16),
                                 ),
