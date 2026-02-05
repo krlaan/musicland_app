@@ -21,5 +21,4 @@ The app will use Firebase for backend services: Authentication, Database, Offlin
 
 
 Thank you!
-
 Kristjan.
